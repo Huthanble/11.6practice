@@ -1,3 +1,4 @@
+#include<malloc.h>
 char pairs(char a) {
     if (a == '}') return '{';
     if (a == ']') return '[';
@@ -10,7 +11,8 @@ bool isValid(char* s) {
     if (n % 2 == 1) {
         return false;
     }
-    int stk[n + 1], top = 0;
+    int* stk=(int*)calloc(n+1,sizeof(int));
+        int top = 0;
     for (int i = 0; i < n; i++) {
         char ch = pairs(s[i]);
         if (ch) {
@@ -18,7 +20,8 @@ bool isValid(char* s) {
                 return false;
             }
             top--;
-        } else {
+        }
+        else {
             stk[top++] = s[i];
         }
     }
